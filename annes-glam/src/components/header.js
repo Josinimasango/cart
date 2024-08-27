@@ -22,7 +22,6 @@ const Header = () => {
 
     return (
         <header className='relative flex flex-col items-center mb-5'>
-            {/* Header section with background image */}
             <div 
                 className='text-center bg-black text-white p-5 w-full'
                 style={{ 
@@ -37,7 +36,7 @@ const Header = () => {
                 <p className='text-sm mt-2'>Your go-to place for the latest in beauty and fashion.</p>
             </div>
 
-            {/* Cart icon section */}
+       
             <div 
                 className='fixed top-4 right-4 w-10 h-10 bg-gray-100 rounded-full flex justify-center items-center cursor-pointer' 
                 onClick={handleOpenTabCart}
