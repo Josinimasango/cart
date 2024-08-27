@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import CartItem from './cartItem';
 import { toggleStatusTab } from '../stores/cart';
 
@@ -8,14 +8,14 @@ const CartTab = () => {
   const carts = useSelector((store) => store.cart.items);
   const statusTab = useSelector((store) => store.cart.statusTab);
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleCloseTabCart = () => {
     dispatch(toggleStatusTab());
   };
 
   const handleCheckout = () => {
-    navigate('/PaymentForm'); // Redirect to the payment route
+    navigate('/PaymentForm'); 
   };
 
   return (
