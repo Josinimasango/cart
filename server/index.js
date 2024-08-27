@@ -1,16 +1,16 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST); // Stripe secret key
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-// Middleware setup
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors({ origin: 'http://localhost:3000' }));
 
-// Payment route
+
 app.post("/payment", async (req, res) => {
     const { amount, id } = req.body;
     try {
@@ -24,8 +24,7 @@ app.post("/payment", async (req, res) => {
                 enabled: true,
                 allow_redirects: 'never',
             },
-            // Uncomment this line if you plan to handle redirect-based payment methods:
-            // return_url: 'https://localhost:3000/CompleteOrder' // Update this with your actual URL
+       
         });
         console.log("Payment", payment);
 
@@ -37,7 +36,7 @@ app.post("/payment", async (req, res) => {
                 nextAction: payment.next_action,
             });
         } else {
-            // Redirect to the complete order page if payment is successful
+            
             res.json({ success: true, redirectUrl: 'http://localhost:3000/CompleteOrder' });
         }
     } catch (error) {
@@ -49,7 +48,6 @@ app.post("/payment", async (req, res) => {
     }
 });
 
-// Route to handle the form submission and show a thank-you message
 app.post('/submit-details', (req, res) => {
     const { name, surname, address } = req.body;
 
