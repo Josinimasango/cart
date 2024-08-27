@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import { useNavigate } from 'react-router-dom';
 
 export default function CompleteOrder() {
   const [formData, setFormData] = useState({ name: '', surname: '', address: '' });
   const [submitted, setSubmitted] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -15,15 +15,13 @@ export default function CompleteOrder() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can handle form submission if needed (e.g., send data to an API)
     setSubmitted(true);
   };
 
   if (submitted) {
-    // Redirect to homepage after showing the message
     setTimeout(() => {
-      navigate('/'); // Redirect to homepage
-    }, 3000); // Adjust time (in milliseconds) as needed
+      navigate('/');
+    }, 3000);
   }
 
   return (
