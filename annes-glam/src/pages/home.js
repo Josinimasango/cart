@@ -27,7 +27,6 @@ const Home = () => {
         ))}
       </div>
 
-      {/* New section with image and text side by side */}
       <div className="flex items-center justify-center my-10 p-5 bg-white shadow-lg rounded-lg">
         <img 
           src={deliveryImage} 
