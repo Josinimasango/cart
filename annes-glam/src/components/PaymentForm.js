@@ -25,14 +25,14 @@ const CARD_OPTIONS = {
 
 export default function PaymentForm() {
   const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false); // State to manage loading status
+  const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true when starting the process
+    setLoading(true);
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -50,16 +50,16 @@ export default function PaymentForm() {
         if (response.data.success) {
           console.log("Successful payment");
           setSuccess(true);
-          setLoading(false); // Stop loading after success
+          setLoading(false);
           navigate("/CompleteOrder");
         }
       } catch (error) {
         console.log("Error", error);
-        setLoading(false); // Stop loading if there's an error
+        setLoading(false);
       }
     } else {
       console.log(error.message);
-      setLoading(false); // Stop loading if there's an error with creating payment method
+      setLoading(false);
     }
   };
 
@@ -68,8 +68,8 @@ export default function PaymentForm() {
       display: 'flex', 
       justifyContent: 'center', 
       alignItems: 'center', 
-      height: '100vh', // Set full height to center vertically
-      backgroundColor: '#282c34' // Optional: to match the background color
+      height: '100vh', 
+      backgroundColor: '#282c34'
     }}>
       {!success ? (
         <form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: "400px" }}>
@@ -81,7 +81,7 @@ export default function PaymentForm() {
           <button 
             type="submit" 
             style={{ 
-              width: "100%", // Full width button
+              width: "100%",
               backgroundColor: "#4caf50", 
               color: "white", 
               border: "none", 
@@ -89,12 +89,12 @@ export default function PaymentForm() {
               borderRadius: "5px", 
               cursor: "pointer",
               marginTop: "10px",
-              opacity: loading ? 0.5 : 1, // Dim button if loading
-              pointerEvents: loading ? "none" : "auto" // Prevent clicking if loading
+              opacity: loading ? 0.5 : 1,
+              pointerEvents: loading ? "none" : "auto"
             }}
-            disabled={loading} // Disable button if loading
+            disabled={loading}
           >
-            {loading ? "Processing..." : "Pay"} {/* Show processing state */}
+            {loading ? "Processing..." : "Pay"}
           </button>
         </form>
       ) : (
@@ -105,7 +105,3 @@ export default function PaymentForm() {
     </div>
   );
 }
-
-
-
-
